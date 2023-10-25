@@ -14,14 +14,16 @@ jobs:
         #container:
         #   image: node:18
         env:
-            MONGODB_CONNECTION_PROTOCOL: mongodb+srv
-            MONGODB_CLUSTER_ADDRESS: cluster0.l1eil9i.mongodb.net
+            MONGODB_CONNECTION_PROTOCOL: mongodb
+            MONGODB_CLUSTER_ADDRESS: 127.0.0.1:27017
             MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
             MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
             PORT: 8080
         services:
             mongodb:
                 image: mongo
+                ports:
+                    - 27017:27017
                 env:
                     ME_CONFIG_MONGODB_ADMINUSERNAME: ${{ secrets.MONGODB_USERNAME }}
                     ME_CONFIG_MONGODB_ADMINPASSWORD: ${{ secrets.MONGODB_PASSWORD }}
